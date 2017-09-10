@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/leftmenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1997ff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bitmap_book_read_chapterlist_repeat"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/selector_category_item"
+            android:clickable="true"
+            android:drawableLeft="@mipmap/ic_category_mark"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="查看当前主题"
+            android:textColor="#ff959595"
+            android:textSize="16.0sp"
+            android:id="@+id/theme" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2.0dip"
+            android:background="@mipmap/ic_shelf_category_divider" />
+        <TextView
+            android:id="@+id/task"
+            android:layout_width="match_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/selector_category_item"
+            android:clickable="true"
+            android:drawableLeft="@mipmap/ic_category_mark"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="任务"
+            android:textColor="#ff959595"
+            android:textSize="16.0sp" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2.0dip"
+            android:background="@mipmap/ic_shelf_category_divider" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/selector_category_item"
+            android:clickable="true"
+            android:drawableLeft="@mipmap/ic_category_mark"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dp"
+            android:paddingRight="10.0dip"
+            android:text="钱包"
+            android:textColor="#ff959595"
+            android:textSize="16.0sp"
+            android:id="@+id/wallet" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2.0dip"
+            android:background="@mipmap/ic_shelf_category_divider" />
+
+        <TextView
+            android:id="@+id/Mall"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_category_item"
+            android:clickable="true"
+            android:drawableLeft="@mipmap/ic_category_mark"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dp"
+            android:paddingRight="10.0dip"
+            android:text="商城"
+            android:textColor="#ff959595"
+            android:textSize="16.0sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

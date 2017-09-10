@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Project03</string>
+    <string name="zhuce">新用户注册</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="repassword">请再次确认你的密码</string>
+    <string name="remember">记住密码</string>
+</resources>
