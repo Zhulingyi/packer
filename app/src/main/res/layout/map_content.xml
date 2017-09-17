@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </com.amap.api.maps.MapView>
+
+    <ToggleButton
+        android:id="@+id/control"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:background="@drawable/buton_run"
+        android:gravity="center"
+        android:textOff="开始运动"
+        android:textOn="停止运动"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        tools:ignore="HardcodedText" />
+</RelativeLayout>

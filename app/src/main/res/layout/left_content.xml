@@ -45,7 +45,25 @@
             android:text="任务"
             android:textColor="#ff959595"
             android:textSize="16.0sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2.0dip"
+            android:background="@mipmap/ic_shelf_category_divider" />
 
+        <TextView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="50.0dip"
+            android:background="@drawable/selector_category_item"
+            android:clickable="true"
+            android:drawableLeft="@mipmap/ic_category_mark"
+            android:drawablePadding="1.0dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="10.0dip"
+            android:text="地图"
+            android:textColor="#ff959595"
+            android:textSize="16.0sp"/>
 
         <View
             android:layout_width="match_parent"

@@ -9,13 +9,14 @@ import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.test.project03.fragment.MallFragment;
+import com.test.project03.fragment.MapFragment;
 import com.test.project03.fragment.TaskFragment;
 import com.test.project03.fragment.ThemeFragment;
 import com.test.project03.fragment.WalletFragment;
 
 import cn.bmob.v3.Bmob;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends CheckPermissionsActivity {
     private SlidingMenu slidingMenu;
 
     @Override
@@ -26,9 +27,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         Bmob.initialize(this,"b79f26077b57f9a2e2fd7a66c95603a4");
 
-
         //替换主界面内容
-        getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new ThemeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new MapFragment()).commit();
         slidingMenu=new SlidingMenu(this);
         slidingMenu.setMode(SlidingMenu.LEFT);//菜单靠左
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//全屏支持触摸拖拉
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         TextView tx_task= (TextView) findViewById(R.id.task);//任务
         TextView tx_wallet= (TextView) findViewById(R.id.wallet);//钱包
         TextView tx_Mall= (TextView) findViewById(R.id.Mall);//商城
+        TextView tx_map= (TextView) findViewById(R.id.map);//地图
 
         menuImg.setOnClickListener(onclick);
         //菜单跳转
@@ -65,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         /**
+         * 地图
+         */
+        tx_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.flContent,new MapFragment()).commit();
+                slidingMenu.toggle();
+            }
+        });
+        /**
          * 钱包
          */
         tx_wallet.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 slidingMenu.toggle();
             }
         });
+
     }
 
     /**

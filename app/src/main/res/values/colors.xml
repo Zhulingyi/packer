@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <drawable name="btn_p">#03abff</drawable>
     <drawable name="btn_n">#00ffffff</drawable>
+    <drawable name="btn_run">#407fcc</drawable>
     <color name="bule">#03abff</color>
     <color name="white">#ffffff</color>
     <color name="bar">#484E61</color>
