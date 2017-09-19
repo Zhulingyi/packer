@@ -41,7 +41,8 @@
             android:name="com.amap.api.v2.apikey"
             android:value="a6b5dec630e38d09804c357382b86210"/>
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
