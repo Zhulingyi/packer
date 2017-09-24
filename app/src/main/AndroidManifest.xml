@@ -54,6 +54,19 @@
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".OtherActivity.MallActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OtherActivity.TaskActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OtherActivity.ThemeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OtherActivity.WalletActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".QR_code.QRActivity"
+            android:screenOrientation="portrait"/>
+
+
         <service android:name="com.amap.api.location.APSService"></service>
 
     </application>

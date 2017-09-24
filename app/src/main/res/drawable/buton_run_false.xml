@@ -3,7 +3,7 @@
     <gradient android:startColor="#dfdbdb"
         android:endColor="#ccdcdada"
         android:angle="90" /><!--背景颜色渐变 angle为渐变角度-->
-    <solid android:color="#72f7d8" /><!-- 背景填充颜色 -->
+    <solid android:color="#bbbfbe" /><!-- 背景填充颜色 -->
     <stroke android:width="1dp"
         android:color="#a9a5a5" /><!-- 描边，边框宽度、颜色 -->
     <corners android:radius="10dp" /><!-- 边角圆弧的半径 -->

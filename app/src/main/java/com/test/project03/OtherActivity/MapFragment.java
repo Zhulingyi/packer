@@ -1,18 +1,13 @@
-package com.test.project03.fragment;
+package com.test.project03.OtherActivity;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -22,7 +17,6 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
-import com.amap.api.maps.AMapOptions;
 import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
@@ -40,13 +34,11 @@ import com.amap.api.trace.LBSTraceClient;
 import com.amap.api.trace.TraceListener;
 import com.amap.api.trace.TraceLocation;
 import com.amap.api.trace.TraceOverlay;
-import com.test.project03.CheckPermissionsActivity;
 import com.test.project03.R;
 import com.test.project03.recoder.DbAdapter;
 import com.test.project03.recoder.PathRecord;
 import com.test.project03.recoder.Util;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,6 +49,7 @@ import static cn.bmob.v3.Bmob.getApplicationContext;
 
 /**
  * 地图模块
+ * 不使用
  * Created by thinkpad on 2017/9/12.
  */
 
@@ -91,7 +84,7 @@ public  class MapFragment extends Fragment implements CompoundButton.OnCheckedCh
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.map_content, container, false);
+        View view = inflater.inflate(R.layout.layout_map, container, false);
         mcontrol= (ToggleButton) view.findViewById(R.id.control);
         initview(savedInstanceState,view);
         initpolyline();
@@ -132,8 +125,6 @@ public  class MapFragment extends Fragment implements CompoundButton.OnCheckedCh
                     mOriginLatLngList = Util.parseLatLngList(record.getPathline());
                     showOriginTrace(startLatLng,endLatLng,mOriginLatLngList);
                 }
-
-
             }
         }
     };
@@ -398,7 +389,7 @@ public  class MapFragment extends Fragment implements CompoundButton.OnCheckedCh
 
         try {
             aMap.moveCamera(CameraUpdateFactory.zoomTo(20));//缩放级别
-//            aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(getBounds(), 50));
+            aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(getBounds(), 50));
         } catch (Exception e) {
             e.printStackTrace();
         }

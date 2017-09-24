@@ -1,4 +1,4 @@
-package com.test.project03.fragment;
+package com.test.project03.OtherActivity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,12 +11,12 @@ import com.test.project03.R;
 
 
 /**
- * 第一个菜单栏主页面
+ * 左侧菜单栏
  * Created by donkor
  */
-public class ThemeFragment extends Fragment {
+public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.theme_content,container, false);
+        return inflater.inflate(R.layout.left_content, container, false);
     }
 }

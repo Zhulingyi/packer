@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Project03</string>
+    <string name="app_name">Packer</string>
     <string name="zhuce">新用户注册</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
