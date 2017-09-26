@@ -75,15 +75,15 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
 
     private PolylineOptions mPolylineOptions;
     private RouteSearch mRouteSearch;
+    private WalkRouteResult mWalkRouteResult;
     private double StartLatitude;//开始位置纬度
     private double StartLongitude;//开始位置经度
     private double EndLatitude;//终点纬度
     private double EndLongitude;//终点经度
     private final int ROUTE_TYPE_WALK = 3;
-
-    private LatLonPoint mStartPoint = new LatLonPoint(39.942295, 116.335891);//起点，116.335891,39.942295
-    private LatLonPoint mEndPoint = new LatLonPoint(39.995576, 116.481288);//终点，116.481288,39.995576
-//    private LatLonPoint mStartPoint=new LatLonPoint(StartLatitude,StartLongitude);
+//    private LatLonPoint mStartPoint = new LatLonPoint(39.942295, 116.335891);//起点，116.335891,39.942295
+    private LatLonPoint mEndPoint = new LatLonPoint(27.8134009399,113.1064796448);//终点，116.481288,39.995576
+    private LatLonPoint mStartPoint;
 //    private LatLonPoint mEndPoint = new LatLonPoint(EndLatitude, EndLongitude);
 
     mapUtil mapSetUp=new mapUtil();
@@ -102,8 +102,9 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
         mcontrol= (ToggleButton) findViewById(R.id.control);
         initview(savedInstanceState);
         initpolyline();
-        initRoute();
-        searchRouteResult(ROUTE_TYPE_WALK, RouteSearch.WalkDefault);
+
+//        searchRouteResult(ROUTE_TYPE_WALK, RouteSearch.WalkDefault);//路线规划开始
+
         mcontrol.setOnClickListener(mcontrolListener);
 
                 //替换主界面内容
@@ -120,7 +121,6 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
         TextView tx_task= (TextView) findViewById(R.id.task);//任务
         TextView tx_wallet= (TextView) findViewById(R.id.wallet);//钱包
         TextView tx_Mall= (TextView) findViewById(R.id.Mall);//商城
-//        TextView tx_map= (TextView) findViewById(R.id.map);//地图
         //搜索
         img_msearch= (ImageView) findViewById(R.id.scan);
         img_msearch.setOnClickListener(scanClick);
@@ -148,20 +148,8 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this,TaskActivity.class);
                 startActivity(intent);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.flContent, new TaskActivity()).commit();
-//                slidingMenu.toggle();
             }
         });
-        /**
-         * 地图
-         */
-//        tx_map.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getSupportFragmentManager().beginTransaction().replace(R.id.flContent,new MapFragment()).commit();
-//                slidingMenu.toggle();
-//            }
-//        });
         /**
          * 钱包
          */
@@ -171,8 +159,6 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this,WalletActivity.class);
                 startActivity(intent);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.flContent,new WalletActivity()).commit();
-//                slidingMenu.toggle();
             }
         });
 
@@ -185,8 +171,6 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this,MallActivity.class);
                 startActivity(intent);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.flContent,new MallActivity()).commit();
-//                slidingMenu.toggle();
             }
         });
 
@@ -221,7 +205,7 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
         //初始化路径规划线段属性
         mPolylineOptions = null;
         mPolylineOptions = new PolylineOptions();
-        mPolylineOptions.color(Color.parseColor("#6db74d")).width(18f);
+        mPolylineOptions.color(Color.parseColor("#ffffff")).width(18f);
     }
     /**
      * 初始化轨迹线
@@ -261,7 +245,10 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
                 record=new PathRecord();
                 mStartTime= System.currentTimeMillis();
                 record.setDate(mapSetUp.getcuDate(mStartTime));
+                initRoute();
+                searchRouteResult(ROUTE_TYPE_WALK, RouteSearch.WalkDefault);//路线规划开始
             }else{//停止运动
+
                 mEndTime=System.currentTimeMillis();
                 mapSetUp.saveRecord(MainActivity.this,record.getPathline(), record.getDate(),mStartTime,mEndTime);//保存轨迹
                 /*显示原始轨迹*/
@@ -270,8 +257,10 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
                 Log.e("getPathline", String.valueOf(record.getPathline()));
                 Log.e("startLoc",String.valueOf(startLoc));
                 Log.e("endloc",String.valueOf(endLoc));
+                aMap.clear();
                 if (record.getPathline() == null || startLoc == null || endLoc == null) {
-//                    Toast.makeText(getContext(), "没有记录到轨迹", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "移动距离太短，没有记录到轨迹", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this,"没有记录到轨迹", Toast.LENGTH_SHORT).show();
 //                    return;
                 }else{
                     LatLng startLatLng = new LatLng(startLoc.getLatitude(),startLoc.getLongitude());
@@ -370,6 +359,7 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
                 aMap.moveCamera(CameraUpdateFactory.changeLatLng(mylocation));
                 StartLatitude=aMapLocation.getLatitude();//纬度
                 StartLongitude=aMapLocation.getLongitude();//经度
+                mStartPoint=new LatLonPoint(StartLatitude,StartLongitude);
                 /*开始运动按钮*/
                 if(mcontrol.isChecked()){
                     record.addpoint(aMapLocation);
@@ -465,7 +455,7 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
             return;
         }
         if (mEndPoint == null) {
-            Toast.makeText(this, "终点未设置", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "终点位置出错", Toast.LENGTH_SHORT).show();
         }
         showProgressDialog();
         final RouteSearch.FromAndTo fromAndTo = new RouteSearch.FromAndTo(mStartPoint, mEndPoint);
@@ -495,11 +485,10 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
      * @param result
      * @param errorCode
      */
-    private WalkRouteResult mWalkRouteResult;
     @Override
     public void onWalkRouteSearched(WalkRouteResult result, int errorCode) {
         dissmissProgressDialog();
-        aMap.clear();// 清理地图上的所有覆盖物
+//        aMap.clear();// 清理地图上的所有覆盖物
         if (errorCode == AMapException.CODE_AMAP_SUCCESS) {
             if (result != null && result.getPaths() != null) {
                 if (result.getPaths().size() > 0) {
@@ -513,12 +502,6 @@ public class MainActivity extends CheckPermissionsActivity implements CompoundBu
 //                    walkRouteOverlay.removeFromMap();
                     walkRouteOverlay.addToMap();
                     walkRouteOverlay.zoomToSpan();
-//                    mBottomLayout.setVisibility(View.VISIBLE);
-                    int dis = (int) walkPath.getDistance();
-                    int dur = (int) walkPath.getDuration();
-//                    String des = mapUtil.getFriendlyTime(dur)+"("+mapUtil.getFriendlyLength(dis)+")";
-//                    mRotueTimeDes.setText(des);
-//                    mRouteDetailDes.setVisibility(View.GONE);
                 } else if (result != null && result.getPaths() == null) {
                     Toast.makeText(this, "没有搜索到相关数据", Toast.LENGTH_SHORT).show();
                 }
