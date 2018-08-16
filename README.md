@@ -5,3 +5,10 @@
 定位功能、运动轨迹纠偏使用的是高德地图，高德地图是当下的定位导航api中比较出色的。
 
 侧滑界面
+![image](https://github.com/Zhulingyi/packer/blob/master/image/image.png)
+
+主界面
+![image](https://github.com/Zhulingyi/packer/blob/master/image/main.png)
+
+二维码扫描界面
+![image](https://github.com/Zhulingyi/packer/blob/master/image/image.png)
